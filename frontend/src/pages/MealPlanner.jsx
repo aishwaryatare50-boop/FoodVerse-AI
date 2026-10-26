@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import "./MealPlanner.css";
 
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000";
+const API_BASE = (import.meta.env.VITE_AI_SERVICE_URL || "http://localhost:8000/api").replace(/\/api$/, "");
 
 const DIETARY_GOALS = [
   "Balanced",

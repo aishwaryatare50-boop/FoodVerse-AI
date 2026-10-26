@@ -56,7 +56,7 @@ const FoodRecognition = () => {
   useEffect(() => {
     const checkService = async () => {
       try {
-        const res = await axios.get(`${AI_BASE_URL.replace('/api', '')}/api/health`, { timeout: 3000 });
+        const res = await axios.get(`${AI_BASE_URL.replace('/api', '')}/api/health`, { timeout: 10000 });
         setAiStatus({ online: true, geminiActive: res.data?.gemini_active });
       } catch {
         setAiStatus({ online: false, geminiActive: false });
@@ -111,7 +111,7 @@ const FoodRecognition = () => {
 
       const response = await axios.post(`${AI_BASE_URL}/ai/food-recognition`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
-        timeout: 25000,
+        timeout: 75000,
       });
 
       if (response.data && response.data.success) {

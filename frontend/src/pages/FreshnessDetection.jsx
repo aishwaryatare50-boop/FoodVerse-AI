@@ -99,7 +99,7 @@ const FreshnessDetection = () => {
 
       const response = await axios.post(`${AI_BASE_URL}/ai/freshness-detection`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
-        timeout: 25000,
+        timeout: 75000,
       });
 
       if (response.data && response.data.success) {
