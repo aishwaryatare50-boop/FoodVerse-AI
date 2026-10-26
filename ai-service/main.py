@@ -42,6 +42,17 @@ app.include_router(cooking_router)
 app.include_router(meal_plan_router)
 
 
+@app.get("/")
+def root():
+    return {
+        "status": "online",
+        "service": "FoodVerse AI Microservice",
+        "version": "1.0.0",
+        "documentation": "/docs",
+        "health": "/api/health",
+    }
+
+
 @app.get("/api/health")
 def health_check():
     gemini_configured = bool(os.getenv("GEMINI_API_KEY", "").strip().strip('"\''))
