@@ -18,17 +18,21 @@ app = FastAPI(
 )
 
 # CORS configuration
-client_url = os.getenv("CLIENT_URL", "http://localhost:5173")
+client_url = os.getenv("CLIENT_URL", "").strip()
 origins = [
-    client_url,
+    "https://food-verse-ai-one.vercel.app",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "http://localhost:5000",
+    "http://localhost:5001",
+    "http://localhost:3000",
 ]
+if client_url and client_url not in origins:
+    origins.append(client_url)
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
+    allow_origin_regex=r"^https://.*\.vercel\.app$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
